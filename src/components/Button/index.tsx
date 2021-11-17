@@ -39,22 +39,22 @@ const Base = styled(RebassButton)<{
 `
 
 export const ButtonPrimary = styled(Base)`
-  background-color: ${({ theme }) => theme.primary1};
-  color: white;
+  background-color: ${({ theme }) => theme.bg3};
+  color: ${({ theme }) => theme.text1};
   &:focus {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.primary1)};
-    background-color: ${({ theme }) => darken(0.05, theme.primary1)};
+    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.bg3)};
+    background-color: ${({ theme }) => darken(0.05, theme.bg3)};
   }
   &:hover {
-    background-color: ${({ theme }) => darken(0.05, theme.primary1)};
+    background-color: ${({ theme }) => darken(0.05, theme.bg3)};
   }
   &:active {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.primary1)};
-    background-color: ${({ theme }) => darken(0.1, theme.primary1)};
+    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.bg3)};
+    background-color: ${({ theme }) => darken(0.1, theme.bg3)};
   }
   &:disabled {
     background-color: ${({ theme, altDisabledStyle, disabled }) =>
-      altDisabledStyle ? (disabled ? theme.bg3 : theme.primary1) : theme.bg3};
+      altDisabledStyle ? (disabled ? theme.primary1 : theme.bg3) : theme.primary1};
     color: ${({ theme, altDisabledStyle, disabled }) =>
       altDisabledStyle ? (disabled ? theme.text3 : 'white') : theme.text3};
     cursor: auto;

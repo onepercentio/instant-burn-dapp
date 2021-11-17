@@ -41,38 +41,59 @@ export function colors(darkMode: boolean): Colors {
     white,
     black,
 
+    /*
+     * solar #FF6420
+     * neon #DEF72D
+     * dark green #0D1F0B
+     * green #354831
+     * dusty mint #ADBEAE
+     * mint #D9DFD9
+     */
+
     // text
     text1: darkMode ? '#FFFFFF' : '#000000',
-    text2: darkMode ? '#C3C5CB' : '#565A69',
-    text3: darkMode ? '#6C7284' : '#888D9B',
-    text4: darkMode ? '#565A69' : '#C3C5CB',
-    text5: darkMode ? '#2C2F36' : '#EDEEF2',
+    text2: darkMode ? '#C3C5CB' : '#354831',
+    text3: darkMode ? '#D9DFD9' : '#FF6420',
+    text4: darkMode ? '#D9DFD9' : '#ADBEAE',
+    text5: darkMode ? '#D9DFD9' : '#D9DFD9',
 
     // backgrounds / greys
-    bg1: darkMode ? '#212429' : '#FFFFFF',
-    bg2: darkMode ? '#2C2F36' : '#F7F8FA',
-    bg3: darkMode ? '#40444F' : '#EDEEF2',
-    bg4: darkMode ? '#565A69' : '#CED0D9',
-    bg5: darkMode ? '#6C7284' : '#888D9B',
+    // bg1: darkMode ? '#212429' : '#FFFFFF',
+    // bg2: darkMode ? '#2C2F36' : '#F7F8FA',
+    // bg3: darkMode ? '#40444F' : '#EDEEF2',
+    // bg4: darkMode ? '#565A69' : '#CED0D9',
+    // bg5: darkMode ? '#6C7284' : '#888D9B',
+
+    bg1: darkMode ? '#0D1F0B' : '#FFFFFF',
+    bg2: darkMode ? '#354831' : '#D9DFD9',
+    bg3: darkMode ? '#FF6420' : '#DEF72D',
+    bg4: darkMode ? '#565A69' : '#ADBEAE',
+    bg5: darkMode ? '#6C7284' : '#354831',
 
     //specialty colors
     modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
-    primary1: darkMode ? '#8878C3' : '#8878C3',
-    primary2: darkMode ? '#E3DFF3' : '#FF8CC3',
-    primary3: darkMode ? '#BFB7DE' : '#FF99C9',
-    primary4: darkMode ? '#6D619A' : '#F6DDE8',
-    primary5: darkMode ? '#6D619A70' : '#E3DFF3',
+    // primary1: darkMode ? '#8878C3' : '#8878C3',
+    // primary2: darkMode ? '#E3DFF3' : '#FF8CC3',
+    // primary3: darkMode ? '#BFB7DE' : '#FF99C9',
+    // primary4: darkMode ? '#6D619A' : '#F6DDE8',
+    // primary5: darkMode ? '#6D619A70' : '#E3DFF3',
+
+    primary1: darkMode ? '#354831' : '#354831',
+    primary2: darkMode ? '#DEF72D' : '#DEF72D',
+    primary3: darkMode ? '#DEF72D' : '#DEF72D',
+    primary4: darkMode ? '#0D1F0B' : '#D9DFD9',
+    primary5: darkMode ? '#0D1F0B' : '#D9DFD9',
 
     // color text
-    primaryText1: darkMode ? '#E3DFF3' : '#8878C3',
+    primaryText1: darkMode ? '#E3DFF3' : '#354831',
 
     // secondary colors
-    secondary1: darkMode ? '#00ffbd' : '#ff007a',
-    secondary2: darkMode ? '#001715' : '#F6DDE8',
-    secondary3: darkMode ? '#001617' : '#FDEAF1',
+    secondary1: darkMode ? '#00ffbd' : '#DEF72D',
+    secondary2: darkMode ? '#001715' : '#D9DFD9',
+    secondary3: darkMode ? '#001617' : '#D9DFD9',
 
     // other
     red1: '#FD4040',

@@ -18,6 +18,7 @@ import {
   RedirectToAddLiquidity,
 } from './AddLiquidity/redirects'
 import { Bridge } from './Bridge'
+import Burn from './Burn'
 import Earn from './Earn'
 import Manage from './Earn/Manage'
 import Pool from './Pool'
@@ -102,6 +103,7 @@ export default function App() {
           <ErrorBoundary fallback={<p>An unexpected error occured on this part of the page. Please reload.</p>}>
             <Switch>
               <Route exact strict path="/swap" component={Swap} />
+              <Route exact strict path="/burn" component={Burn} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
               <Route exact strict path="/send" component={Send} />

@@ -7,7 +7,7 @@ import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { ROUTER_ADDRESS } from '../../constants'
+import { CMCO2, ROUTER_ADDRESS } from '../../constants'
 import { useCurrency } from '../../hooks/Tokens'
 import useENS from '../../hooks/useENS'
 import useParsedQueryString from '../../hooks/useParsedQueryString'
@@ -125,7 +125,8 @@ export function useDerivedSwapInfo(): {
   } = useSwapState()
 
   const inputCurrency = useCurrency(inputCurrencyId)
-  const outputCurrency = useCurrency(outputCurrencyId)
+  // const outputCurrency = useCurrency(outputCurrencyId)
+  const outputCurrency = useCurrency(CMCO2[network.chainId].address)
   const recipientLookup = useENS(recipient ?? undefined)
   const to: string | null = (recipient === null ? account : recipientLookup.address) ?? null
 

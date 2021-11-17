@@ -15,7 +15,7 @@ const StyledSwapHeader = styled.div`
 
 export default function SwapHeader({
   title = 'Swap',
-  hideSettings = false,
+  hideSettings = true,
 }: {
   title?: string
   hideSettings?: boolean

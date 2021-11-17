@@ -14,7 +14,7 @@ import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
 import { useTranslation } from 'react-i18next'
 import { Text } from 'rebass'
-import { ThemeContext } from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 
 import AddressInputPanel from '../../components/AddressInputPanel'
 import { ButtonConfirmed, ButtonError, ButtonLight, ButtonPrimary } from '../../components/Button'
@@ -287,6 +287,11 @@ export default function Swap() {
     return <ChangeNetworkModal />
   }
 
+  const Message = styled.p`
+    font-size: 10pt;
+    padding: 10px;
+  `
+
   return (
     <>
       <TokenWarningModal
@@ -296,7 +301,7 @@ export default function Swap() {
       />
       <SwapPoolTabs active={'swap'} />
       <AppBody>
-        <SwapHeader title={actionLabel} />
+        <SwapHeader title="Carbon Offset - Swap" />
         <Wrapper id="swap-page">
           <ConfirmSwapModal
             isOpen={showConfirm}
@@ -311,52 +316,40 @@ export default function Swap() {
             swapErrorMessage={swapErrorMessage}
             onDismiss={handleConfirmDismiss}
           />
-
+          <Message>
+            Welcome to the Carbon Offset Dapp. <br />
+            The swap step helps you to buy MCO2 token using any supported token in Celo Ubeswap.
+          </Message>
           <AutoColumn gap={'md'}>
             <CurrencyInputPanel
               label={
                 independentField === Field.OUTPUT && trade
-                  ? `${t('from')}${isEstimate ? ' (estimated)' : ''}`
-                  : t('from')
+                  ? `${t('Input Crypto')}${isEstimate ? ' (estimated)' : ''}`
+                  : t('Input Crypto')
               }
               value={formattedAmounts[Field.INPUT]}
               showMaxButton={!atMaxAmountInput}
               currency={currencies[Field.INPUT]}
               onUserInput={handleTypeInput}
+              disableCurrencySelect={false}
               onMax={handleMaxInput}
               onCurrencySelect={handleInputSelect}
               otherCurrency={currencies[Field.OUTPUT]}
               id="swap-currency-input"
             />
-            <AutoColumn justify="space-between">
-              <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
-                <ArrowWrapper clickable>
-                  <ArrowDown
-                    size="16"
-                    onClick={() => {
-                      setApprovalSubmitted(false) // reset 2 step UI for approvals
-                      onSwitchTokens()
-                    }}
-                    color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? theme.primary1 : theme.text2}
-                  />
-                </ArrowWrapper>
-                {recipient === null && isExpertMode ? (
-                  <LinkStyledButton id="add-recipient-button" onClick={() => onChangeRecipient('')}>
-                    + Add a send (optional)
-                  </LinkStyledButton>
-                ) : null}
-              </AutoRow>
-            </AutoColumn>
             <CurrencyInputPanel
               value={formattedAmounts[Field.OUTPUT]}
               onUserInput={handleTypeOutput}
               label={
-                independentField === Field.INPUT && trade ? `${t('to')}${isEstimate ? ' (estimated)' : ''}` : t('to')
+                independentField === Field.INPUT && trade
+                  ? `${t('cMCO2')}${isEstimate ? ' (estimated)' : ''}`
+                  : t('cMCO2')
               }
               showMaxButton={false}
               currency={currencies[Field.OUTPUT]}
               onCurrencySelect={handleOutputSelect}
               otherCurrency={currencies[Field.INPUT]}
+              disableCurrencySelect={true}
               id="swap-currency-output"
             />
 
@@ -469,7 +462,7 @@ export default function Swap() {
                   <Text fontSize={16} fontWeight={500}>
                     {priceImpactSeverity > 3 && !isExpertMode
                       ? `Price Impact High`
-                      : `${actionLabel}${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                      : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
                   </Text>
                 </ButtonError>
               </RowBetween>
@@ -503,7 +496,7 @@ export default function Swap() {
             )}
             {showApproveFlow && (
               <Column style={{ marginTop: '1rem' }}>
-                <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />
+                <ProgressSteps steps={[approval === ApprovalState.APPROVED, false]} />
               </Column>
             )}
             {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}

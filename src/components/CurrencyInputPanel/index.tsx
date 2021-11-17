@@ -1,5 +1,5 @@
 import { ChainId, useContractKit } from '@celo-tools/use-contractkit'
-import { Pair, Token } from '@ubeswap/sdk'
+import { Pair, Token, TokenAmount } from '@ubeswap/sdk'
 import { darken } from 'polished'
 import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -131,6 +131,7 @@ interface CurrencyInputPanelProps {
   showCommonBases?: boolean
   customBalanceText?: string
   chainId?: ChainId
+  allowance: TokenAmount | undefined
 }
 
 export default function CurrencyInputPanel({
@@ -141,7 +142,7 @@ export default function CurrencyInputPanel({
   label = 'Input',
   onCurrencySelect,
   currency,
-  disableCurrencySelect = false,
+  disableCurrencySelect,
   hideBalance = false,
   pair = null, // used for double token logo
   hideInput = false,
@@ -150,6 +151,7 @@ export default function CurrencyInputPanel({
   showCommonBases,
   customBalanceText,
   chainId,
+  allowance,
 }: CurrencyInputPanelProps) {
   const { t } = useTranslation()
 
@@ -181,7 +183,9 @@ export default function CurrencyInputPanel({
                   style={{ display: 'inline', cursor: 'pointer' }}
                 >
                   {!hideBalance && !!currency && selectedCurrencyBalance
-                    ? (customBalanceText ?? 'Balance: ') + selectedCurrencyBalance?.toSignificant(6)
+                    ? (customBalanceText ?? 'Balance: ') +
+                      selectedCurrencyBalance?.toSignificant(6) +
+                      (allowance ? '/Allowance: ' + allowance.toFixed(2) : '')
                     : ' -'}
                 </TYPE.body>
               )}

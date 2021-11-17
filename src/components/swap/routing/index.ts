@@ -57,6 +57,7 @@ const estimateGas = async (call: ContractCall): Promise<BigNumber> => {
       throw new Error('Unexpected issue with estimating the gas. Please try again.')
     } catch (callError: any) {
       console.debug('Call threw error', call, callError)
+      console.error(callError)
       let errorMessage: string
       switch (callError.reason) {
         case 'UniswapV2Router: INSUFFICIENT_OUTPUT_AMOUNT':

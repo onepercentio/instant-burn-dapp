@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 import sortByListPriority from 'utils/listSort'
 
 import { AppState } from '../index'
-import { UNSUPPORTED_LIST_URLS } from './../../constants/lists'
+import { CARBON_OFFSET_LIST, UNSUPPORTED_LIST_URLS } from './../../constants/lists'
 
 type TagDetails = Tags[keyof Tags]
 export interface TagInfo extends TagDetails {
@@ -162,6 +162,10 @@ export function useCombinedInactiveList(): TokenAddressMap {
 // used to hide warnings on import for default tokens
 export function useDefaultTokenList(): TokenAddressMap {
   return { ...listToTokenMap(UBESWAP_TOKEN_LIST), ...listToTokenMap(UNISWAP_TOKEN_LIST) }
+}
+
+export function useCarbonTokenList(): TokenAddressMap {
+  return CARBON_OFFSET_LIST
 }
 
 // list of tokens not supported on interface, used to show warnings and prevent swaps and adds

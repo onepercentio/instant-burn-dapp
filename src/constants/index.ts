@@ -16,6 +16,14 @@ type ChainTokenList = {
   readonly [chainId: number]: Token[]
 }
 
+type ChainToken = {
+  readonly [chainId: number]: Token
+}
+
+type ChainContract = {
+  readonly [chainId: number]: string
+}
+
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
@@ -86,6 +94,28 @@ export const CEUR = {
     'Celo Euro'
   ),
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xD8763CBa276a3738E6DE85b4b3bF5FDed6D6cA73', 18, 'cEUR', 'Celo Euro'),
+}
+
+export const CARBON_OFFSET_ADDRESS: ChainContract = {
+  [ChainId.MAINNET]: '0x6c25425886c00d765cccf7f2A4fB785f42e40855',
+  [ChainId.ALFAJORES]: '0xF4Db08607786253BCE3cc55Ad504E34335655337',
+}
+
+export const CMCO2: ChainToken = {
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET,
+    '0x32a9fe697a32135bfd313a6ac28792dae4d9979d',
+    18,
+    'cMCO2',
+    'Carbon Token'
+  ),
+  [ChainId.ALFAJORES]: new Token(
+    ChainId.ALFAJORES,
+    '0xe1aef5200e6a38ea69ad544c479bd1a176c8a510',
+    18,
+    'cMCO2',
+    'Carbon Token'
+  ),
 }
 
 // used to construct intermediary pairs for trading

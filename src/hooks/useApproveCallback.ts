@@ -26,7 +26,7 @@ export enum ApprovalState {
 export function useApproveCallback(
   amountToApprove?: TokenAmount,
   spender?: string
-): [ApprovalState, () => Promise<void>] {
+): [ApprovalState, () => Promise<void>, TokenAmount | undefined] {
   const { address: account } = useContractKit()
   const getConnectedSigner = useGetConnectedSigner()
 
@@ -104,7 +104,7 @@ export function useApproveCallback(
     doTransaction,
   ])
 
-  return [approvalState, approve]
+  return [approvalState, approve, currentAllowance]
 }
 
 // wraps useApproveCallback in the context of a swap

@@ -1,6 +1,5 @@
 import { ChainId, useContractKit } from '@celo-tools/use-contractkit'
 import { CELO, ChainId as UbeswapChainId, TokenAmount } from '@ubeswap/sdk'
-import { CardNoise } from 'components/earn/styled'
 import Modal from 'components/Modal'
 import usePrevious from 'hooks/usePrevious'
 import { darken } from 'polished'
@@ -12,13 +11,11 @@ import { NavLink } from 'react-router-dom'
 import { Text } from 'rebass'
 import { useAggregateUbeBalance, useTokenBalance } from 'state/wallet/hooks'
 import styled from 'styled-components'
-import { TYPE } from 'theme'
 import { ExternalLink } from 'theme/components'
-import { CountUp } from 'use-count-up'
 
 import Icon from '../../assets/svg/icon-ube.svg'
-import Logo from '../../assets/svg/logo.svg'
-import LogoDark from '../../assets/svg/logo-dark.svg'
+import Logo from '../../assets/svg/logo_moss.svg'
+import LogoDark from '../../assets/svg/logo_moss-dark.svg'
 import { useDarkModeManager } from '../../state/user/hooks'
 import { YellowCard } from '../Card'
 import Menu from '../Menu'
@@ -154,6 +151,7 @@ const Title = styled(NavLink)`
   align-items: center;
   pointer-events: auto;
   justify-self: flex-start;
+  text-decoration: none;
   margin-right: 12px;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     justify-self: center;
@@ -168,6 +166,7 @@ const UbeIcon = styled.div`
   :hover {
     transform: rotate(-5deg);
   }
+  color: white;
 `
 
 const activeClassName = 'ACTIVE'
@@ -294,28 +293,9 @@ export default function Header() {
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
             {t('swap')}
           </StyledNavLink>
-          <StyledNavLink
-            id={`pool-nav-link`}
-            to={'/pool'}
-            isActive={(match, { pathname }) =>
-              Boolean(match) ||
-              pathname.startsWith('/add') ||
-              pathname.startsWith('/remove') ||
-              pathname.startsWith('/create') ||
-              pathname.startsWith('/find')
-            }
-          >
-            {t('pool')}
+          <StyledNavLink id={`bridge-nav-link`} to={'/burn'}>
+            {t('burn')}
           </StyledNavLink>
-          <StyledNavLink id="farm-nav-link" to="/farm">
-            {t('farm')}
-          </StyledNavLink>
-          <StyledNavLink id={`bridge-nav-link`} to={'/bridge'}>
-            {t('bridge')}
-          </StyledNavLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://info.ubeswap.org'}>
-            {t('charts')} <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
@@ -325,33 +305,6 @@ export default function Header() {
               <NetworkCard title={NETWORK_LABELS[chainId]}>{NETWORK_LABELS[chainId]}</NetworkCard>
             )}
           </HideSmall>
-
-          {aggregateBalance && (
-            <UBEWrapper onClick={() => setShowUbeBalanceModal(true)}>
-              <UBEAmount active={!!account} style={{ pointerEvents: 'auto' }}>
-                {account && (
-                  <HideSmall>
-                    <TYPE.white
-                      style={{
-                        paddingRight: '.4rem',
-                      }}
-                    >
-                      <CountUp
-                        key={countUpValue}
-                        isCounting
-                        start={parseFloat(countUpValuePrevious)}
-                        end={parseFloat(countUpValue)}
-                        thousandsSeparator={','}
-                        duration={1}
-                      />
-                    </TYPE.white>
-                  </HideSmall>
-                )}
-                UBE
-              </UBEAmount>
-              <CardNoise />
-            </UBEWrapper>
-          )}
 
           <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
             {account && userCELOBalance ? (

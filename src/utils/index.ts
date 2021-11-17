@@ -4,9 +4,10 @@ import { AddressZero } from '@ethersproject/constants'
 import { Contract } from '@ethersproject/contracts'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { JSBI, Percent, Token, TokenAmount } from '@ubeswap/sdk'
-import { IUniswapV2Router02, UbeswapMoolaRouter } from 'generated/index'
+import { CarbonChain, IUniswapV2Router02, UbeswapMoolaRouter } from 'generated/index'
 
-import { ROUTER_ADDRESS, UBESWAP_MOOLA_ROUTER_ADDRESS } from '../constants'
+import { CARBON_OFFSET_ADDRESS, ROUTER_ADDRESS, UBESWAP_MOOLA_ROUTER_ADDRESS } from '../constants'
+import CarbonOffsetABI from '../constants/abis/CarbonChain.json'
 import IUniswapV2Router02ABI from '../constants/abis/IUniswapV2Router02.json'
 import UbeswapMoolaRouterABI from '../constants/abis/UbeswapMoolaRouter.json'
 import { TokenAddressMap } from '../state/lists/hooks'
@@ -75,6 +76,10 @@ export function getRouterContract(_: number, library: Web3Provider, account?: st
 
 export function getMoolaRouterContract(_: number, library: Web3Provider, account?: string): UbeswapMoolaRouter {
   return getContract(UBESWAP_MOOLA_ROUTER_ADDRESS, UbeswapMoolaRouterABI, library, account) as UbeswapMoolaRouter
+}
+
+export function getCarbonOffsetContract(_: number, library: Web3Provider, account?: string): CarbonChain {
+  return getContract(CARBON_OFFSET_ADDRESS[_], CarbonOffsetABI, library, account) as CarbonChain
 }
 
 export function escapeRegExp(string: string): string {
